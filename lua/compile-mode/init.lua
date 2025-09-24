@@ -467,8 +467,11 @@ M.recompile = a.void(
 
 		param = param or {}
 
+
 		if vim.g.compile_command then
+			compilation_directory = vim.g.compilation_directory or vim.fn.getcwd()
 			runcommand(vim.g.compile_command, param)
+			vim.g.compilation_directory = nil
 		elseif config.recompile_no_fail then
 			M.compile(param)
 		else
